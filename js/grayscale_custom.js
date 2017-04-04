@@ -2,8 +2,28 @@
 
 $(document).ready(function(){
 
-//load gallary with images 
+	// Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyCuPLYd8d6IpS6EdAf8y40l4_07drR4FUM",
+      authDomain: "geamasemedia.firebaseapp.com",
+      databaseURL: "https://geamasemedia.firebaseio.com",
+      projectId: "geamasemedia",
+      storageBucket: "geamasemedia.appspot.com",
+      messagingSenderId: "337938452314"
+    };
+    firebase.initializeApp(config);
 
+    var database = firebase.database();
+
+	//whenever a new image is uploaded... 
+	database.ref().on("child_added", function(childSnapshot, prevChildKey) {
+
+	// Store encoded image from database into a variable.
+  	var src = childSnapshot.val().imageUpload;
+
+  	$('.fade').slick('slickAdd',"<div><a class='thumbnail' href='#'><img class='img-responsive' src='" + src +"' alt='image'></a></div>");
+ //	$("#carousel").append("<div><a class='thumbnail' href='#'><img class='img-responsive' src='" + src +"' alt='image'></a></div>");
+	});
 
 //slick image carousel
 $('.fade').slick({
@@ -13,7 +33,11 @@ $('.fade').slick({
   fade: true,
   cssEase: 'linear',
   autoplay: true,
-  autoplaySpeed: 3500,
+  autoplaySpeed: 3000,
+  draggable:true,
+  swipe:true,
+  touchMove:true,
+  mobileFirst:true,
 });
 	
 

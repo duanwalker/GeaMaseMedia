@@ -54,11 +54,6 @@ $(document).ready(function(){
 	  var imgName = childSnapshot.val().fileName;
 	  var imgType = childSnapshot.val().fileType;
 	  // var imgUploadDate = childSnapshot.val().;
-	 
-	  // image Info
-	  console.log(imgName);
-	  console.log(imgType);
-	  // console.log(imgUploadDate);
 
 	  // Add each imge's data into the table
 	  $("#image-table > tbody").append("<tr><td><a href='#'>" + imgName + "</a></td><td>" + imgType + "</td><td>12:00:00</td><td><button type='button' class='btn btn-danger' onclick='removeImage'>Delete</button></td></tr>");
