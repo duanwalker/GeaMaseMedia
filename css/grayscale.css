@@ -418,6 +418,41 @@ a:focus {
 /*Gallery Section*/
 
 
+/* ORDER FORM  */
+.newUserForm{
+  background:white;
+  border:1px solid;
+  border-bottom:10px solid orange;
+  width:350px;
+  height:100%;
+  border-radius: 0.5rem;
+  position:relative;
+  float:right;
+  margin-right:25px;
+  margin-top:20px;
+   
+}
+.newUserForm input{
+    padding-top:2px;
+    padding-left:10px;
+    margin-left:10px;
+  margin-top:8px;
+  margin-bottom:5px;
+  border-radius: 0.5rem;
+}
+.newUserForm label{
+     font-size:0.90em;
+     padding-left: 8px;
+     padding-top:8px;
+}
+legend{
+  background-color:#6d3a19;
+  font-size:0.95em;
+  font-weight:;
+  color:white;
+  text-shadow: 1px 2px 3px rgba(0,0,0,.4);
+  padding-left:8px;
+}
 
 /*
 #map {

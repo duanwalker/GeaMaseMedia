@@ -56,7 +56,18 @@ $(document).ready(function(){
 	  // var imgUploadDate = childSnapshot.val().;
 
 	  // Add each imge's data into the table
-	  $("#image-table > tbody").append("<tr><td><a href='#'>" + imgName + "</a></td><td>" + imgType + "</td><td>12:00:00</td><td><button type='button' class='btn btn-danger' onclick='removeImage'>Delete</button></td></tr>");
+	  $("#image-table > tbody").append("<tr><td><a href='#'>" + imgName + "</a></td><td>" + imgType + "</td><td>12:00:00</td><td><button id='delete' type='button' class='deletebtn btn btn-danger'>Delete</button></td></tr>");
+	});
+
+	// document.getElementById("deleteImage").onclick = function() {myFunction()};
+	// function myFunction(){
+	// 	var test = database.ref();
+	// 	console.log(test);
+	// };
+	//delete button functionality
+	$(".deletebtn").click(function(){
+		var test = database.ref();
+		console.log(test + "1");
 	});
 })
 

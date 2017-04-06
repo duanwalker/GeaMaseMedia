@@ -131,10 +131,14 @@ When you’re in need of quality sound reinforcement, lighting services or just 
         </div>
     </section> 
     <!-- Contact Section -->
-    <section id="contact" class="container content-section text-center">
+    <section id="contact" class="container content-section ">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
+            <div class="col-lg-8 col-lg-offset-2 text-center">          
                 <h2>Contact Gea Mase Media</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-7">
                 <address>        
                       <h3 class="#">Email:</h3>
                       <p class="lead">Info@GeaMaseMedia.com</p>
@@ -147,9 +151,29 @@ When you’re in need of quality sound reinforcement, lighting services or just 
                       <br>             
                 </address>
             </div>
-        </div>    
+        <div class="col-md-5">
+        <div class="newUserForm form-group">
+          <form action="createUserPg.html" id="userForm" class="form-horizontal">
+            <fieldset>
+              <legend>Need custom media? Let us know below</legend>
+              <div class="#">
+                <input type="text" name="firstname" placeholder="First name"/></br>
+                <input type="text" name="lastname" placeholder="Last name"/><br>
+                <input type="email" name="email" placeholder="Email address"/><br>
+                <input type="text" name="company" placeholder="Company (optional)"/><br>
+                <input type='tel' name="phone" pattern='[\+]\d{3}[\(]\d{3}[\)]\d{4}[\-]\d{4}' title='Phone Number (Format:(999)9999-9999)' placeholder="Contact Phone"/> <br>
+              <!-- <label class="control-label" for="inputLarge">Gea Mase Media</label> --><br>
+              <textarea style="border-radius:10px;margin-left:10px;width:325px; " rows="4" cols="40" name="details" form="userForm" wrap="soft" class="form-control input-lg"/></textarea><br>
+              <input type="submit" class="btn btn-success" value="Submit"/>
+              </div>
+            </fieldset>
+          </form>
+        </div>  
+        </div>
+        </div>
+        <br>    
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
+            <div class="col-lg-8 col-lg-offset-2 text-center">
                 <ul class="list-inline banner-social-buttons">
                     <li>
                         <a href="https://twitter.com/geamase" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name"></span></a>
