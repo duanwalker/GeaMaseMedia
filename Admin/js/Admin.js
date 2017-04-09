@@ -12,12 +12,20 @@ $(document).ready(function(){
     firebase.initializeApp(config);
 
     var database = firebase.database();
-	
+    var ref = database.ref('Images');
+    var imgName = "";
+    var imgType = "";
+    var imgUploadDate ="";
+
+    var time = new Date().toString();
+	var convertDate = moment(new Date(time));
+	var currentTime = moment(convertDate);
 		// Creates local "temporary" object for holding image data
   	var newImg = {
     	imageUpload: "",
-    	fileName:"",
-    	fileType: ""
+    	fileName: "",
+    	fileType: "",
+    	//dateUploaded: currentTime
   	};
     //encode image
     function encodeImageFileAsURL(cb) {
@@ -31,6 +39,7 @@ $(document).ready(function(){
         // get file name and file type from upload
        	newImg.fileName =  file.name;
         newImg.fileType = file.type;
+      //  newImg.dateUploaded = currentTime;
     	}
 	}
 	// push new object to the database
@@ -38,36 +47,42 @@ $(document).ready(function(){
 	    $('.viewImg')
 	      .find('img')
 	        .attr('src', base64Img);
-
 	        newImg.imageUpload=base64Img;
-
-		database.ref().push(newImg);
+		ref.push(newImg);
 		console.log(newImg);
+		populateTable();
 	}));
-
-	//pull images from database and store in html table
-	database.ref().on("child_added", function(childSnapshot, prevChildKey) {
+	//function to pull images from database and store in html table
+	function populateTable(){
+	  database.ref().on("child_added", function(childSnapshot, prevChildKey) {
 
 	  console.log(childSnapshot.val());
-
-	  // Store everything into a variable.
-	  var imgName = childSnapshot.val().fileName;
-	  var imgType = childSnapshot.val().fileType;
-	  // var imgUploadDate = childSnapshot.val().;
-
-	  // Add each imge's data into the table
-	  $("#image-table > tbody").append("<tr><td><a href='#'>" + imgName + "</a></td><td>" + imgType + "</td><td>12:00:00</td><td><button id='delete' type='button' class='deletebtn btn btn-danger'>Delete</button></td></tr>");
+	  var images = childSnapshot.val();
+	  var keys = Object.keys(images);
+	  console.log(keys);
+	  for(i=0;i<keys.length;i++){
+	  	var k = keys[i];
+	  	imgName = images[k].fileName;
+	  	imgType = images[k].fileType;
+	  
+	  	console.log(imgName,imgType);
+	  	// Add each imge's data into the table
+	  	$("#image-table > tbody").append("<tr><td><a href='#'>" + imgName + "</a></td><td>" + imgType + "</td><td> 12:00:00 </td><td><button id='delete' type='button' class='deletebtn btn btn-danger'>Delete</button></td></tr>");
+	  	};
+	  	//delete button functionality
+		$(".deletebtn").click(function(){
+			//removes child node by delete btn
+			ref.child(k).remove();
+			//clear and repopulate table
+			$("#image-table > tbody").empty();
+			populateTable();
+		});
 	});
-
-	// document.getElementById("deleteImage").onclick = function() {myFunction()};
-	// function myFunction(){
-	// 	var test = database.ref();
-	// 	console.log(test);
-	// };
-	//delete button functionality
-	$(".deletebtn").click(function(){
-		var test = database.ref();
-		console.log(test + "1");
-	});
+	};  
+	  
+		
+	
+	 
+	
 })
 
