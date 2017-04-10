@@ -20,6 +20,7 @@ $(document).ready(function(){
     var time = new Date().toString();
 	var convertDate = moment(new Date(time));
 	var currentTime = moment(convertDate);
+	populateTable();
 		// Creates local "temporary" object for holding image data
   	var newImg = {
     	imageUpload: "",
@@ -33,6 +34,15 @@ $(document).ready(function(){
         var file = this.files[0];
         var reader  = new FileReader();
         reader.onloadend = function () {
+        //check for .jpg or .gif or .png
+    	var ext = file.name.split('.').pop();
+    	console.log(ext);
+        if(ext != 'jpg')
+        {
+        	alert("Only .jpg files please.");
+        	return;
+        }	
+        else
             cb(reader.result);
         }
         reader.readAsDataURL(file);
@@ -44,12 +54,16 @@ $(document).ready(function(){
 	}
 	// push new object to the database
 	$('#inputFileToLoad').change(encodeImageFileAsURL(function(base64Img){
+		
+
 	    $('.viewImg')
 	      .find('img')
 	        .attr('src', base64Img);
 	        newImg.imageUpload=base64Img;
 		ref.push(newImg);
 		console.log(newImg);
+		//clear and repopulate table
+		$("#image-table > tbody").empty();
 		populateTable();
 	}));
 	//function to pull images from database and store in html table
@@ -78,7 +92,6 @@ $(document).ready(function(){
 			populateTable();
 		});
 	});
-	};  
-	
+	};  	
 })
 
