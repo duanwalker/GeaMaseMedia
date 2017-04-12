@@ -10,9 +10,9 @@ $(document).ready(function(){
       messagingSenderId: "337938452314"
     };
     firebase.initializeApp(config);
-
     var database = firebase.database();
     var ref = database.ref('Images');
+
     var imgName = "";
     var imgType = "";
     var imgUploadDate ="";
@@ -20,13 +20,17 @@ $(document).ready(function(){
     var time = new Date().toString();
 	var convertDate = moment(new Date(time));
 	var currentTime = moment(convertDate);
+	var time2 = currentTime._d.toString();
+	var uploadDateTime = time2.split("(");
+	//run function to initialize table
 	populateTable();
-		// Creates local "temporary" object for holding image data
+
+	// Creates object for holding image data
   	var newImg = {
     	imageUpload: "",
     	fileName: "",
     	fileType: "",
-    	//dateUploaded: currentTime
+    	dateUploaded: "",
   	};
     //encode image
     function encodeImageFileAsURL(cb) {
@@ -36,7 +40,7 @@ $(document).ready(function(){
         reader.onloadend = function () {
         //check for .jpg or .gif or .png
     	var ext = file.name.split('.').pop();
-    	console.log(ext);
+
         if(ext != 'jpg')
         {
         	alert("Only .jpg files please.");
@@ -49,13 +53,11 @@ $(document).ready(function(){
         // get file name and file type from upload
        	newImg.fileName =  file.name;
         newImg.fileType = file.type;
-      //  newImg.dateUploaded = currentTime;
+        newImg.dateUploaded = uploadDateTime[0];
     	}
 	}
 	// push new object to the database
 	$('#inputFileToLoad').change(encodeImageFileAsURL(function(base64Img){
-		
-
 	    $('.viewImg')
 	      .find('img')
 	        .attr('src', base64Img);
@@ -78,19 +80,24 @@ $(document).ready(function(){
 	  	var k = keys[i];
 	  	imgName = images[k].fileName;
 	  	imgType = images[k].fileType;
+	  	imgDate = images[k].dateUploaded;
 	  
 	  	console.log(imgName,imgType);
 	  	// Add each imge's data into the table
-	  	$("#image-table > tbody").append("<tr><td><a href='#'>" + imgName + "</a></td><td>" + imgType + "</td><td> 12:00:00 </td><td><button id='delete' type='button' class='deletebtn btn btn-danger'>Delete</button></td></tr>");
-	  	};
+	  	$("#image-table > tbody").append("<tr><td><a href='#'>" + imgName + "</a></td><td>" + imgType + "</td><td>" + imgDate + "</td><td><button id='delete' type='button' class='deletebtn btn btn-danger'>Delete</button></td></tr>");
+	  	
 	  	//delete button functionality
 		$(".deletebtn").click(function(){
-			//removes child node by delete btn
-			ref.child(k).remove();
+			console.log(prevChildKey);
+			console.log(keys);
+			console.log(keys[1]);
+			console.log(k);
+			ref.child().remove();
 			//clear and repopulate table
 			$("#image-table > tbody").empty();
 			populateTable();
 		});
+	   };
 	});
 	};  	
 })
