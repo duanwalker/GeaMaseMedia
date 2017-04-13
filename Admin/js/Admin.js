@@ -12,7 +12,7 @@ $(document).ready(function(){
     firebase.initializeApp(config);
     var database = firebase.database();
     var ref = database.ref('Images');
-
+    
     var imgName = "";
     var imgType = "";
     var imgUploadDate ="";
@@ -81,24 +81,20 @@ $(document).ready(function(){
 	  	imgName = images[k].fileName;
 	  	imgType = images[k].fileType;
 	  	imgDate = images[k].dateUploaded;
-	  
-	  	console.log(imgName,imgType);
+	  	var name = k;
+	  	console.log(imgName,imgType,name);
 	  	// Add each imge's data into the table
-	  	$("#image-table > tbody").append("<tr><td><a href='#'>" + imgName + "</a></td><td>" + imgType + "</td><td>" + imgDate + "</td><td><button id='delete' type='button' class='deletebtn btn btn-danger'>Delete</button></td></tr>");
-	  	
-	  	//delete button functionality
-		$(".deletebtn").click(function(){
-			console.log(prevChildKey);
-			console.log(keys);
-			console.log(keys[1]);
-			console.log(k);
-			ref.child().remove();
-			//clear and repopulate table
-			$("#image-table > tbody").empty();
-			populateTable();
-		});
+	  	$("#image-table > tbody").append("<tr><td><a href='#'>" + imgName + "</a></td><td>" + imgType + "</td><td>" + imgDate + "</td><td><button data-name='" + name + "' type='button' class='deletebtn btn btn-danger'>Delete</button></td></tr>");
 	   };
 	});
-	};  	
+
+	  //add event listener for delete button functionality
+	  document.querySelector('body').addEventListener('click', function(event) {
+  		ref.child(event.target.dataset.name).remove();
+  		//clear and repopulate table
+		$("#image-table > tbody").empty();
+		populateTable();
+	});
+};  	
 })
 
