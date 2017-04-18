@@ -19,14 +19,16 @@ $(document).ready(function(){
 	database.ref().on("child_added", function(childSnapshot, prevChildKey) {
 
 	// Store encoded image from database into a variable.
-  var images = childSnapshot.val();
+    var images = childSnapshot.val();
     var keys = Object.keys(images);
     console.log(keys);
-    for(i=0;i<keys.length;i++){
+  for(i=0;i<keys.length;i++){
       var k = keys[i];
   	  var src = images[k].imageUpload;
-    console.log(src);
-  	$('.fade').slick('slickAdd',"<div><a class='thumbnail' href='#'><img class='img-responsive' src='" + src +"' alt='image'></a></div>");
+      console.log(src);
+    //	$('.fade').slick('slickAdd',"<div><a class='thumbnail' href='#'><img class='img-responsive' src='" + src +"' alt='image'></a></div>");
+    $('.slider-for').slick('slickAdd',"<div><a class='thumbnail' href='#'><img class='img-responsive' src='" + src +"' alt='image'></a></div>");
+    $('.slider-nav').slick('slickAdd',"<div><a class='thumbnail' href='#'><img class='img-responsive' src='" + src +"' alt='image'></a></div>");
   };
  //	$("#carousel").append("<div><a class='thumbnail' href='#'><img class='img-responsive' src='" + src +"' alt='image'></a></div>");
 	});
@@ -45,6 +47,29 @@ $('.fade').slick({
   touchMove:true,
   mobileFirst:true,
 });
-	
+// slick slider synching carousel
+$('.slider-for').slick({
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  arrows: false,
+  fade: true,
+  asNavFor: '.slider-nav'
+});
+$('.slider-nav').slick({
+  slidesToShow: 3,
+  slidesToScroll: 1,
+  asNavFor: '.slider-for',
+  dots: true,
+  centerMode: true,
+  focusOnSelect: true,
+  mobileFirst:true,
+  autoplay: true,
+  autoplaySpeed: 3000,
+  draggable:true,
+  swipe:true,
+  touchMove:true,
+  mobileFirst:true
+});
+
 
 })
