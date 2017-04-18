@@ -19,9 +19,15 @@ $(document).ready(function(){
 	database.ref().on("child_added", function(childSnapshot, prevChildKey) {
 
 	// Store encoded image from database into a variable.
-  	var src = childSnapshot.val().imageUpload;
-
+  var images = childSnapshot.val();
+    var keys = Object.keys(images);
+    console.log(keys);
+    for(i=0;i<keys.length;i++){
+      var k = keys[i];
+  	  var src = images[k].imageUpload;
+    console.log(src);
   	$('.fade').slick('slickAdd',"<div><a class='thumbnail' href='#'><img class='img-responsive' src='" + src +"' alt='image'></a></div>");
+  };
  //	$("#carousel").append("<div><a class='thumbnail' href='#'><img class='img-responsive' src='" + src +"' alt='image'></a></div>");
 	});
 
