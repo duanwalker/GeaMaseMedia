@@ -86,7 +86,48 @@ limitations under the License.
             <!-- <span id="linkbox"></span> -->
           </div>
         </div>
+        <!-- Container for the Audio upload -->
+        <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
+          <div class="mdl-card__title mdl-color--light-blue-600 mdl-color-text--white">
+            <h2 class="mdl-card__title-text">Upload Audio</h2>
+          </div>
+          <div class="mdl-card__supporting-text mdl-color-text--grey-600" id="messagesDiv">
+            <p>Select an .mp3 file below. When it is uploaded, the file name will display below and show in the table.</p>
+            <h6>Choose File</h6>
+            <input type="file" id="inputAudioToLoad" name="file" text="Upload Image" />
+            <!-- <h6>File URL:</h6>
+            <span id="linkbox"></span> -->
+            <br>
+            <div class="viewAudio"><label></label></div>
+            
+          </div>
+        </div>
 
+        <!-- Container for the Audio list -->
+        <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
+          <div class="mdl-card__title mdl-color--light-blue-600 mdl-color-text--white">
+            <h2 class="mdl-card__title-text">Audio Uploaded</h2>
+          </div>
+          <div class="mdl-card__supporting-text mdl-color-text--grey-600" id="messagesDiv">
+            <p>Click the red "X" to delete an audio file.</p>
+            <h6>Audio</h6>
+              <table class="table table-hover" id='audio-table'>
+                <thead>
+                  <tr>
+                    <th>Title</th>
+                    <th>Type</th>                
+                    <th>Uploaded</th>
+                    <th>Sample Audio</th>
+                    <th>Full Audio</th>
+                    <th>Delete</th>                 
+                  </tr>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+            <!-- <span id="linkbox"></span> -->
+          </div>
+        </div>
 
       </div>
     </main>
