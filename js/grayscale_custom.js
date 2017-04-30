@@ -25,11 +25,14 @@ $(document).ready(function(){
   for(i=0;i<keys.length;i++){
       var k = keys[i];
   	  var src = images[k].imageUpload;
-      console.log(src);
-    //	$('.fade').slick('slickAdd',"<div><a class='thumbnail' href='#'><img class='img-responsive' src='" + src +"' alt='image'></a></div>");
+      var type = images[k].imageType;
+    //  console.log(src);
+    if(type=='image/jpeg'){
+       // $('.fade').slick('slickAdd',"<div><a class='thumbnail' href='#'><img class='img-responsive' src='" + src +"' alt='image'></a></div>");
     $('.slider-for').slick('slickAdd',"<div><a class='thumbnail' href='#'><img class='img-responsive' src='" + src +"' alt='image'></a></div>");
     $('.slider-nav').slick('slickAdd',"<div><a class='thumbnail' href='#'><img class='img-responsive' src='" + src +"' alt='image'></a></div>");
-  };
+    }
+     };
  //	$("#carousel").append("<div><a class='thumbnail' href='#'><img class='img-responsive' src='" + src +"' alt='image'></a></div>");
 	});
 

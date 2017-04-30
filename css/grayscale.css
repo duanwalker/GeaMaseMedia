@@ -101,6 +101,18 @@ a:focus {
 .navbar-custom .nav li.active a:hover {
   color: white;
 }
+.blue{
+color: rgba(183,222,237,1);
+color: -moz-linear-gradient(left, rgba(183,222,237,1) 0%, rgba(183,222,237,1) 4%, rgba(8,76,194,1) 15%, rgba(33,180,226,1) 88%, rgba(183,222,237,1) 100%);
+color: -webkit-gradient(left top, right top, color-stop(0%, rgba(183,222,237,1)), color-stop(4%, rgba(183,222,237,1)), color-stop(15%, rgba(8,76,194,1)), color-stop(88%, rgba(33,180,226,1)), color-stop(100%, rgba(183,222,237,1)));
+color: -webkit-linear-gradient(left, rgba(183,222,237,1) 0%, rgba(183,222,237,1) 4%, rgba(8,76,194,1) 15%, rgba(33,180,226,1) 88%, rgba(183,222,237,1) 100%);
+color: -o-linear-gradient(left, rgba(183,222,237,1) 0%, rgba(183,222,237,1) 4%, rgba(8,76,194,1) 15%, rgba(33,180,226,1) 88%, rgba(183,222,237,1) 100%);
+color: -ms-linear-gradient(left, rgba(183,222,237,1) 0%, rgba(183,222,237,1) 4%, rgba(8,76,194,1) 15%, rgba(33,180,226,1) 88%, rgba(183,222,237,1) 100%);
+color: linear-gradient(to right, rgba(183,222,237,1) 0%, rgba(183,222,237,1) 4%, rgba(8,76,194,1) 15%, rgba(33,180,226,1) 88%, rgba(183,222,237,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b7deed', endColorstr='#b7deed', GradientType=1 );
+
+
+}
 @media (min-width: 768px) {
   .navbar-custom {
     padding: 20px 0;
@@ -308,7 +320,10 @@ a:focus {
     -ms-transform:  translate(0px,0px)  scaleX(0.86) scaleY(0.97) skewX(0deg) ;
   }
 }
-
+.intro-body img{
+  height:80%;
+  width:80%;
+}
 .intro .intro-body {
   display: table-cell;
   vertical-align: bottom;
@@ -316,6 +331,7 @@ a:focus {
 .intro .intro-body .brand-heading {
   font-size: 40px;
   text-shadow: 1px 1px 0px #484949;
+ /* color:#084cc2 ;*/
 }
 .intro .intro-body .intro-text {
   font-size: 22px;
