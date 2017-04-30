@@ -180,13 +180,14 @@ When you’re in need of quality sound reinforcement, lighting services or just 
                         <input id="lastName" type="text" name="lastname" placeholder="Last name"/><br>
                         <input id="emailAddress" type="email" name="email" placeholder="Email address"/><br>
                         <input id="companyName" type="text" name="company" placeholder="Company (optional)"/><br>
-                        <input id="phoneNumber" type='tel' name="phone" pattern='[\+]\d{3}[\(]\d{3}[\)]\d{4}[\-]\d{4}' title='Phone Number (Format:(999)9999-9999)' placeholder="Contact Phone"/> <br>
+                        <input id="phoneNumber" type='tel' name="phone" pattern='/^[\.-)( ]*([0-9]{3})[\.-)( ]*([0-9]{3})[\.-)( ]*([0-9]{4})$/' title='Phone Number Format:(999)999-9999' placeholder="Contact Phone"/> <br>
                       <!-- <label class="control-label" for="inputLarge">Gea Mase Media</label> --><br>
                         <textarea id="messageBody" style="border-radius:10px;margin-left:10px;width:325px; " rows="4" cols="40" name="details" form="userForm" wrap="soft" class="form-control input-lg"/></textarea><br>
-                        <input type="submit" class="btn btn-success" value="Submit"/>
+                       
                       </div>
                     </fieldset>
                     <div class="g-recaptcha" data-sitekey="6LeFWR8UAAAAALCqrul2v451f8JOyu6jTCURyTUg"></div>
+                     <input type="submit" class="btn btn-success" value="Submit"/>
                   </form>
                 </div>  
             </div>
