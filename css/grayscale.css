@@ -455,6 +455,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b7deed', end
   margin-top:8px;
   margin-bottom:5px;
   border-radius: 0.5rem;
+  color:darkgray;
 }
 .newUserForm label{
      font-size:0.90em;

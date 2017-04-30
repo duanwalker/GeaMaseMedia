@@ -25,7 +25,7 @@ $(document).ready(function(){
   for(i=0;i<keys.length;i++){
       var k = keys[i];
   	  var src = images[k].imageUpload;
-      var type = images[k].imageType;
+      var type = images[k].fileType;
     //  console.log(src);
     if(type=='image/jpeg'){
        // $('.fade').slick('slickAdd',"<div><a class='thumbnail' href='#'><img class='img-responsive' src='" + src +"' alt='image'></a></div>");
@@ -71,8 +71,24 @@ $('.slider-nav').slick({
   draggable:true,
   swipe:true,
   touchMove:true,
+  arrows: true,
   mobileFirst:true
 });
 
+//User Form Variables
+var fName = document.getElementById("firstName").value;
+var lName = document.getElementById("lastName").value;
+var email_address = document.getElementById("emailAddress").value;
+var company = document.getElementById("companyName").value;
+var contact_phone = document.getElementById("phoneNumber").value;
+var message_html = document.getElementById("messageBody").value;
+var from_name=fName+" "+lName;
+// User Form EmailJS Web service call 
+emailjs.send("gmmclientservice_gmail_com","geamase_media_contact_form",{from_name, company,email_address,contact_phone,message_html})
+.then(function(response) {
+   console.log("SUCCESS. status=%d, text=%s", response.status, response.text);
+}, function(err) {
+   console.log("FAILED. error=", err);
+});
 
 })
