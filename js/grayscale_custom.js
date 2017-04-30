@@ -78,13 +78,14 @@ $('.slider-nav').slick({
 //User Form Variables
 var fName = document.getElementById("firstName").value;
 var lName = document.getElementById("lastName").value;
-var email_address = document.getElementById("emailAddress").value;
-var company = document.getElementById("companyName").value;
-var contact_phone = document.getElementById("phoneNumber").value;
-var message_html = document.getElementById("messageBody").value;
-var from_name=fName+" "+lName;
+var eMail = document.getElementById("emailAddress").value;
+var co = document.getElementById("companyName").value;
+var phone = document.getElementById("phoneNumber").value;
+var message = document.getElementById("messageBody").value;
+var personName=fName+" "+lName;
+
 // User Form EmailJS Web service call 
-emailjs.send("gmmclientservice_gmail_com","geamase_media_contact_form",{from_name, company,email_address,contact_phone,message_html})
+emailjs.send("gmmclientservice_gmail_com","geamase_media_contact_form",{"from_name":"personName", "company":"co","email_address":"eMail","contact_phone":"phone","message_html":"message"})
 .then(function(response) {
    console.log("SUCCESS. status=%d, text=%s", response.status, response.text);
 }, function(err) {
