@@ -12,27 +12,37 @@ $(document).ready(function(){
       messagingSenderId: "337938452314"
     };
     firebase.initializeApp(config);
-
+   // console.log("default app name is: " + firebase.app().name);
     var database = firebase.database();
 
 	//whenever a new image is uploaded... 
 	database.ref().on("child_added", function(childSnapshot, prevChildKey) {
 
 	// Store encoded image from database into a variable.
-    var images = childSnapshot.val();
-    var keys = Object.keys(images);
+    var values = childSnapshot.val();
+    var keys = Object.keys(values);
     console.log(keys);
   for(i=0;i<keys.length;i++){
       var k = keys[i];
-  	  var src = images[k].imageUpload;
-      var type = images[k].fileType;
+  	  //get image variables
+      var src = values[k].imageUpload;
+      var type = values[k].fileType;
+      //get audio variables
+      var audioName = values[k].audioName;
+      var audioType = values[k].audioType;
+      var audioDate = values[k].audioDateUploaded;
+      var audioFile = values[k].audioUpload;
     //  console.log(src);
     if(type=='image/jpeg'){
        // $('.fade').slick('slickAdd',"<div><a class='thumbnail' href='#'><img class='img-responsive' src='" + src +"' alt='image'></a></div>");
     $('.slider-for').slick('slickAdd',"<div><a class='thumbnail' href='#'><img class='img-responsive' src='" + src +"' alt='image'></a></div>");
     $('.slider-nav').slick('slickAdd',"<div><a class='thumbnail' href='#'><img class='img-responsive' src='" + src +"' alt='image'></a></div>");
     }
-     };
+    if(audioType == 'audio/mp3'){
+          $("#audio-table > tbody").append("<tr><td><a href='"+ audioFile +"'>" + audioName + "</a></td><td>" + audioType + "</td><td>" + audioDate + "</td><td><button data-name='" + name + "'>Sample</button></td><td><button data-name='" + name + "'>PayPalbtn</button></td></tr>");
+    }
+    
+    };
  //	$("#carousel").append("<div><a class='thumbnail' href='#'><img class='img-responsive' src='" + src +"' alt='image'></a></div>");
 	});
 
