@@ -416,13 +416,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b7deed', end
 }
 
 /*Download / Purchase section*/
+.audiojs{
+  width:100% !important;
+}
 .content-section {
   padding-top: 100px;
 }
 .download-section {
   width: 100%;
-  height:150px;
-  overflow-y: scroll;
+  height:300px;
   padding: 50px 0;
   color: white;
   /*background: url(../img/downloads-bg.jpg) no-repeat center center scroll;*/
@@ -431,6 +433,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b7deed', end
   -moz-background-size: cover;
   background-size: cover;
   -o-background-size: cover;
+}
+#musicTable{
+  overflow-y: scroll;
+  color:#42DCA3;
 }
 
 /*Gallery Section*/

@@ -39,10 +39,27 @@ $(document).ready(function(){
     $('.slider-nav').slick('slickAdd',"<div><a class='thumbnail' href='#'><img class='img-responsive' src='" + src +"' alt='image'></a></div>");
     }
     if(audioType == 'audio/mp3'){
-          $("#audio-table > tbody").append("<tr><td><a href='"+ audioFile +"'>" + audioName + "</a></td><td>" + audioType + "</td><td>" + audioDate + "</td><td><button data-name='" + name + "'>Sample</button></td><td><button data-name='" + name + "'>PayPalbtn</button></td></tr>");
+          $("#audio-table > tbody").append("<tr><td><a href='"+ audioFile +"'>" + audioName + "</a></td><td>" + audioType + "</td><td>" + audioDate.substring(0,16) + "</td><td><button type='button' class='playBtn btn btn-default btn-sm' data-src='" + audioFile + "'><span class='glyphicon glyphicon-play' aria-hidden='true'></span> Play</button></td><td><button data-name='" + name + "'>PayPalbtn</button></td></tr>");
     }
     
     };
+    
+
+    // var play = document.querySelector(".playBtn");
+    // play.on('click', function(event) {
+    //   var song = event.target.dataset.scr; //$(this).data(audioFile);
+    //   var src = song.toString(); 
+    //   console.log(song);
+    // $("#audioPlayer").attr("src",song);
+    // }); 
+
+    // $(".playBtn").each(function(index, element) {
+    //     var test = $(this).data(src);
+    //     var test2 = test.toString();
+    //     //console.log(test2);
+    //     $("#audioPlayer").attr("src",test2);
+    //   });
+      
  //	$("#carousel").append("<div><a class='thumbnail' href='#'><img class='img-responsive' src='" + src +"' alt='image'></a></div>");
 	});
 
@@ -101,5 +118,24 @@ emailjs.send("gmmclientservice_gmail_com","geamase_media_contact_form",{"from_na
 }, function(err) {
    console.log("FAILED. error=", err);
 });
+
+//play audio files
+    // $("button").click(function(){
+    //   var song = $(this).attr("data-src");
+    //   console.log(song);
+    //   $("#audioPlayer").attr("src","song");
+    // });
+     
+document.querySelector("body").addEventListener('click', function(event) {
+    //  var song = $(this).data(src);
+      var src = event.target.dataset.src//song.toString();//JSON.stringify(song); //event.target.dataset.audioFile;
+    //  song.prototype.toString = function songToString() {
+    //   var src = this.breed;
+    //   return scr;
+    // }
+    //  console.log(src);
+    $("#audioPlayer").attr("src",src);
+    }); 
+
 
 })

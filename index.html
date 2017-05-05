@@ -139,7 +139,10 @@ When you’re in need of quality sound reinforcement, lighting services or just 
         <h2>Purchase Music</h2>
         <div class="download-section">
             <div class="container">
-                <div class="col-lg-8 col-lg-offset-2">  
+                <div id="musicTable" class="col-lg-8 col-lg-offset-2">
+                <div class="audioJS">
+                    <audio id="audioPlayer" src="http://kolber.github.io/audiojs/demos/mp3/juicy.mp3" preload="auto"></audio>
+                </div> 
                     <table class="table table-hover" id='audio-table'>
                         <thead>
                           <tr>
@@ -265,7 +268,14 @@ When you’re in need of quality sound reinforcement, lighting services or just 
 
     <!-- Custom JavaScript -->
     <script src="js/grayscale_custom.js"></script>
-   <!--  <script src="js/grayscale_custom.js"></script> -->
+    
+    <!--  audioJS -->
+    <script src="js/audioJS/audio.min.js"></script>
+    <script>
+      audiojs.events.ready(function() {
+        var as = audiojs.createAll();
+      });
+    </script>
 </body>
 
 </html>
