@@ -35,11 +35,14 @@ $(document).ready(function(){
     //  console.log(src);
     if(type=='image/jpeg'){
        // $('.fade').slick('slickAdd',"<div><a class='thumbnail' href='#'><img class='img-responsive' src='" + src +"' alt='image'></a></div>");
-    $('.slider-for').slick('slickAdd',"<div><a class='thumbnail' href='#'><img class='img-responsive' src='" + src +"' alt='image'></a></div>");
-    $('.slider-nav').slick('slickAdd',"<div><a class='thumbnail' href='#'><img class='img-responsive' src='" + src +"' alt='image'></a></div>");
+        $('.slider-for').slick('slickAdd',"<div><a class='thumbnail' href='#'><img class='img-responsive' src='" + src +"' alt='image'></a></div>");
+        $('.slider-nav').slick('slickAdd',"<div><a class='thumbnail' href='#'><img class='img-responsive' src='" + src +"' alt='image'></a></div>");
+      
+        $("#gallaryNavLoad").hide();
     }
     if(audioType == 'audio/mp3'){
           $("#audio-table > tbody").append("<tr><td><a href='"+ audioFile +"'>" + audioName + "</a></td><td>" + audioType + "</td><td>" + audioDate.substring(0,16) + "</td><td><button type='button' class='playBtn btn btn-default btn-sm' data-src='" + audioFile + "'><span class='glyphicon glyphicon-play' aria-hidden='true'></span> Play</button></td><td><button data-name='" + name + "'>PayPalbtn</button></td></tr>");
+          $("#audioLoad").hide();
     }
     
     };
@@ -127,15 +130,11 @@ emailjs.send("gmmclientservice_gmail_com","geamase_media_contact_form",{"from_na
     // });
      
 document.querySelector("body").addEventListener('click', function(event) {
-    //  var song = $(this).data(src);
-      var src = event.target.dataset.src//song.toString();//JSON.stringify(song); //event.target.dataset.audioFile;
-    //  song.prototype.toString = function songToString() {
-    //   var src = this.breed;
-    //   return scr;
-    // }
-    //  console.log(src);
+
+      var src = event.target.dataset.src;
     $("#audioPlayer").attr("src",src);
-    }); 
+}); 
+
 
 
 })
