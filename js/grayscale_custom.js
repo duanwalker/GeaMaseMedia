@@ -1,6 +1,15 @@
 /* Built with <3 by Duan Walker 2017 */
 
 $(document).ready(function(){
+  //set variables
+  var values,keys,k,src, type,audioName,audioType,audioDate,audioFile;
+  var ppBtn = "<form action='https://www.paypal.com/cgi-bin/webscr' method='post' target='_top'>" +
+"<input type='hidden' name='cmd' value='_s-xclick'>" +
+"<input type='hidden' name='hosted_button_id' value='EXYRWQM4NSUAJ'>" +
+"<input type='image' src='https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif' border='0' name='submit' alt='PayPal - The safer, easier way to pay online!'>" +
+"<img alt=' border='0' src='https://www.paypalobjects.com/en_US/i/scr/pixel.gif' width='1' height='1'>" +
+"</form>";
+
 
 	// Initialize Firebase
     var config = {
@@ -12,27 +21,27 @@ $(document).ready(function(){
       messagingSenderId: "337938452314"
     };
     firebase.initializeApp(config);
-   // console.log("default app name is: " + firebase.app().name);
+
     var database = firebase.database();
 
 	//whenever a new image is uploaded... 
-	database.ref().on("child_added", function(childSnapshot, prevChildKey) {
+	   database.ref().on("child_added", function(childSnapshot, prevChildKey) {
 
 	// Store encoded image from database into a variable.
-    var values = childSnapshot.val();
-    var keys = Object.keys(values);
+    values = childSnapshot.val();
+    keys = Object.keys(values);
     console.log(keys);
   for(i=0;i<keys.length;i++){
-      var k = keys[i];
+      k = keys[i];
   	  //get image variables
-      var src = values[k].imageUpload;
-      var type = values[k].fileType;
+      src = values[k].imageUpload;
+      type = values[k].fileType;
       //get audio variables
-      var audioName = values[k].audioName;
-      var audioType = values[k].audioType;
-      var audioDate = values[k].audioDateUploaded;
-      var audioFile = values[k].audioUpload;
-    //  console.log(src);
+      audioName = values[k].audioName;
+      audioType = values[k].audioType;
+      audioDate = values[k].audioDateUploaded;
+      audioFile = values[k].audioUpload;
+    
     if(type=='image/jpeg'){
        // $('.fade').slick('slickAdd',"<div><a class='thumbnail' href='#'><img class='img-responsive' src='" + src +"' alt='image'></a></div>");
         $('.slider-for').slick('slickAdd',"<div><a class='thumbnail' href='#'><img class='img-responsive' src='" + src +"' alt='image'></a></div>");
@@ -41,7 +50,7 @@ $(document).ready(function(){
         $("#gallaryNavLoad").hide();
     }
     if(audioType == 'audio/mp3'){
-          $("#audio-table > tbody").append("<tr><td><a href='"+ audioFile +"'>" + audioName + "</a></td><td>" + audioType + "</td><td>" + audioDate.substring(0,16) + "</td><td><button type='button' class='playBtn btn btn-default btn-sm' data-src='" + audioFile + "'><span class='glyphicon glyphicon-play' aria-hidden='true'></span> Play</button></td><td><button data-name='" + name + "'>PayPalbtn</button></td></tr>");
+          $("#audio-table > tbody").append("<tr><td><a href='"+ audioFile +"'>" + audioName + "</a></td><td>" + audioType + "</td><td>" + audioDate.substring(0,16) + "</td><td><button type='button' class='playBtn btn btn-default btn-sm' data-src='" + audioFile + "'><span class='glyphicon glyphicon-play' aria-hidden='true'></span> Play</button></td><td>" + ppBtn + "</td></tr>");
           $("#audioLoad").hide();
     }
     
