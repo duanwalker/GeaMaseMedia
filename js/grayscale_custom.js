@@ -3,12 +3,18 @@
 $(document).ready(function(){
   //set variables
   var values,keys,k,src, type,audioName,audioType,audioDate,audioFile;
+//   var ppBtn = "<form action='https://www.paypal.com/cgi-bin/webscr' method='post' target='_top'>" +
+// "<input type='hidden' name='cmd' value='_s-xclick'>" +
+// "<input type='hidden' name='hosted_button_id' value='EXYRWQM4NSUAJ'>" +
+// "<input type='image' src='https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif' border='0' name='submit' alt='PayPal - The safer, easier way to pay online!'>" +
+// "<img alt=' border='0' src='https://www.paypalobjects.com/en_US/i/scr/pixel.gif' width='1' height='1'>" +
+// "</form>";
+
   var ppBtn = "<form action='https://www.paypal.com/cgi-bin/webscr' method='post' target='_top'>" +
-"<input type='hidden' name='cmd' value='_s-xclick'>" +
-"<input type='hidden' name='hosted_button_id' value='EXYRWQM4NSUAJ'>" +
-"<input type='image' src='https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif' border='0' name='submit' alt='PayPal - The safer, easier way to pay online!'>" +
-"<img alt=' border='0' src='https://www.paypalobjects.com/en_US/i/scr/pixel.gif' width='1' height='1'>" +
-"</form>";
+"<input type='hidden' name='cmd' value='_s-xclick'>"+
+"<input type='hidden' name='hosted_button_id' value='MBK8SYC45NHEN'>"+
+"<input type='image' src='https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif' border='0' name='submit' alt='PayPal - The safer, easier way to pay online!'>"+
+"<img alt=' border='0' src='https://www.paypalobjects.com/en_US/i/scr/pixel.gif' width='1' height='1'></form>"
 
 
 	// Initialize Firebase
@@ -30,7 +36,7 @@ $(document).ready(function(){
 	// Store encoded image from database into a variable.
     values = childSnapshot.val();
     keys = Object.keys(values);
-    console.log(keys);
+    // console.log(keys);
   for(i=0;i<keys.length;i++){
       k = keys[i];
   	  //get image variables
@@ -50,7 +56,7 @@ $(document).ready(function(){
         $("#gallaryNavLoad").hide();
     }
     if(audioType == 'audio/mp3'){
-          $("#audio-table > tbody").append("<tr><td><a href='"+ audioFile +"'>" + audioName + "</a></td><td>" + audioType + "</td><td>" + audioDate.substring(0,16) + "</td><td><button type='button' class='playBtn btn btn-default btn-sm' data-src='" + audioFile + "'><span class='glyphicon glyphicon-play' aria-hidden='true'></span> Play</button></td><td>" + ppBtn + "</td></tr>");
+          $("#audio-table > tbody").append("<tr><td>" + audioName + "</td><td>" + audioType + "</td><td>" + audioDate.substring(0,16) + "</td><td><button type='button' class='playBtn btn blue btn-sm' data-src='" + audioFile + "'><span class='glyphicon glyphicon-play' aria-hidden='true'></span> Play</button></td><td><div class='dnld' data-dnld='" + audioFile + "'>" + ppBtn + "</div></td></tr>");
           $("#audioLoad").hide();
     }
     
@@ -131,12 +137,18 @@ emailjs.send("gmmclientservice_gmail_com","geamase_media_contact_form",{"from_na
    console.log("FAILED. error=", err);
 });
 
-//play audio files
-    // $("button").click(function(){
-    //   var song = $(this).attr("data-src");
-    //   console.log(song);
-    //   $("#audioPlayer").attr("src","song");
-    // });
+//add audio file to session storage
+    $(".dnld").click(function(){
+      var song = $(this).attr("data-dnld");
+      // check browser support for session storage
+      if (typeof(Storage) !== "undefined") {
+      // Code for localStorage/sessionStorage.
+        localStorage.purchasedAudio = song;
+      } else {
+      // Sorry! No Web Storage support..
+      alert("Your browser does not support the download of this type of audio.");
+      }
+    });
      
 document.querySelector("body").addEventListener('click', function(event) {
 
