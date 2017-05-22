@@ -139,7 +139,8 @@ emailjs.send("gmmclientservice_gmail_com","geamase_media_contact_form",{"from_na
 
 //add audio file to session storage
     $(".dnld").click(function(){
-      var song = $(this).attr("data-dnld");
+      // var song = $(this).attr("data-dnld");
+      var song = "testVariable"
       // check browser support for session storage
       if (typeof(Storage) !== "undefined") {
       // Code for localStorage/sessionStorage.

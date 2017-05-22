@@ -321,8 +321,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b7deed', end
   }
 }
 .intro-body img{
-  height:80%;
-  width:80%;
+  height:60%;
+  width:75%;
+  position:relative;
+  top:40px;
+  left: 0 auto;
 }
 .intro .intro-body {
   display: table-cell;
